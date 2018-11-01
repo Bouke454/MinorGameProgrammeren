@@ -16,24 +16,37 @@ public class SceneController : MonoBehaviour {
     public float cardPositionY = 5f;
 
     //Aantal kogels
+
     public int ammo = 3;
+    public int lives = 3;
     [SerializeField] public TextMesh ammoLabel;
-    [SerializeField] private TextMesh scoreLabel;
+    [SerializeField] private TextMesh cardsLeftLabel;
 
     private MainCard _firstRevealed;
     private MainCard _secondRevealed;
-
     private int _score = 0;
-
-
+    //animatie voor het laden van het volgende level
+    public GameObject completeLevelUI;
+    //Game sound effects
     public AudioSource Gun;
     public AudioSource Score;
+    public AudioSource Complete;
     [SerializeField] private MainCard originalCard;
     //Aantal verschillende kaarten op het bord
     [SerializeField] private Sprite[] images;
-    
+
+    //Timer
+    [SerializeField] public TextMesh CountDownLabel;
+    [SerializeField] private float mainTimer;
+    private float timer;
+    private bool canCount = true;
+    private bool doOnce = false;
+
+    //
+    private bool FinishedLevel = false;
 
     private void Start() {
+        timer = mainTimer;
         ammoLabel.text = "Ammo: " + ammo;
         Vector3 startPos = originalCard.transform.position; //The position of the first card. All other cards are offset from here.
 
@@ -57,6 +70,24 @@ public class SceneController : MonoBehaviour {
                 card.transform.position = new Vector3(posX, posY, startPos.z);
             }
         }
+    }
+    public void Update() {
+        var cardsLeft = cardCols * cardRows / 2 - _score;
+        cardsLeftLabel.text = "Cards left: " + cardsLeft;
+        if (timer >= 0.0f && canCount && FinishedLevel == false) {
+            timer -= Time.deltaTime;
+            CountDownLabel.text = timer.ToString("F");
+        } else if (timer <= 0.0f && !doOnce) {
+            canCount = false;
+            doOnce = true;
+            CountDownLabel.text = "0.00";
+            timer = 0.0f;
+            GameOver();
+        }
+    }
+
+    void GameOver() {
+        SceneManager.LoadScene("Menu");
     }
 
     private int[] ShuffleArray(int[] numbers) {
@@ -92,15 +123,23 @@ public class SceneController : MonoBehaviour {
         }
     }
 
+    public void ActivateUI() {
+        completeLevelUI.SetActive(true);
+    }
+
     private IEnumerator CheckMatch() {
         if (_firstRevealed.id == _secondRevealed.id) {
             Score.Play();
             _score++;
-            scoreLabel.text = "Combo: " + _score;
             //bekijken of de score gelijk is aan het aantal kaarten omgeslagen per level
             var cardsLeft = cardCols * cardRows / 2;
             if (_score == cardsLeft) {
-                Debug.Log("einde van het level");
+                FinishedLevel = true;
+                Complete.Play();
+                Invoke("ActivateUI", 5f);
+
+
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         } else {
             yield return new WaitForSeconds(0.5f);
@@ -112,9 +151,5 @@ public class SceneController : MonoBehaviour {
         _firstRevealed = null;
         _secondRevealed = null;
 
-    }
-
-    public void Restart() {
-        SceneManager.LoadScene("Menu");
     }
 }
