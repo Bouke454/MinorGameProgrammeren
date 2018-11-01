@@ -307,7 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CardTouch.cs" />
-    <Compile Include="Assets\Scripts\CountDownScript.cs" />
     <Compile Include="Assets\Scripts\LevelComplete.cs" />
     <Compile Include="Assets\Scripts\MainCard.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
