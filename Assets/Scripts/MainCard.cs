@@ -12,12 +12,12 @@ public class MainCard : MonoBehaviour {
     //Wanneer de gebruiker op een kaart klik word gekeken of dezze al actief staat en of
     //deze daarnaast getoond kan worden. Met als extra of de speler nog genoeg ammunitie heeft.
     public void OnMouseDown() {
-        if (Card_Back.activeSelf && controller.canReveal && controller.ammo != 0) {
+        if (controller.ammo <= 0) {
+            Empty.Play();
+        }
+        else if (Card_Back.activeSelf && controller.canReveal) {
             Card_Back.SetActive(false);
             controller.CardRevealed(this);
-        }
-        else if(controller.ammo == 0) {
-            Empty.Play();
         }
     }
 

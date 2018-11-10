@@ -1,0 +1,2 @@
+C:\Users\bouke\Documents\Match Wars\.vs\Match Wars\lut\0\i\Match WarsTests\Debug\Match WarsTests.csprojResolveAssemblyReference.cache
+C:\Users\bouke\Documents\Match Wars\.vs\Match Wars\lut\0\i\Match WarsTests\Debug\Match WarsTests.csproj.CoreCompileInputs.cache
