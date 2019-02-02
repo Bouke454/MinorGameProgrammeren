@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WebGL:20</UnityBuildTarget>
     <UnityVersion>2018.2.11f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -309,11 +307,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CardTouch.cs" />
+    <Compile Include="Assets\Scripts\GameTimer.cs" />
+    <Compile Include="Assets\Scripts\highscoreShow.cs" />
     <Compile Include="Assets\Scripts\LevelComplete.cs" />
     <Compile Include="Assets\Scripts\MainCard.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\Powerup.cs" />
     <Compile Include="Assets\Scripts\Reload.cs" />
+    <Compile Include="Assets\Scripts\RememberObject.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
+    <Compile Include="Assets\Scripts\Scores.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />

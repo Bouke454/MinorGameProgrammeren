@@ -7,6 +7,7 @@ public class Reload : MonoBehaviour {
     //Haalt het object SceneController op deze bevat immers het aantal kogels per scene
     [SerializeField] private SceneController controller;
     public AudioSource reload;
+    public int ReloadCounter = 1;
     public void OnMouseOver() {
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         sprite.color = highlightColor;
@@ -15,7 +16,7 @@ public class Reload : MonoBehaviour {
     //de munitie van de speler met +1 bijgevuld worden
     public void OnMouseDown() {
         reload.Play();
-        controller.ammo = controller.ammo + 1;
+        controller.ammo = controller.ammo + ReloadCounter;
         controller.ammoLabel.text = "Ammo: " + controller.ammo;
     }
 
